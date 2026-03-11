@@ -20,7 +20,7 @@ The `index.html` file is a simple, self-contained HTML document with embedded CS
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inception VC - Static Site</title>
+    <title>Inception - Static Site</title>
     <style>
         body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #f4f4f4; }
         h1 { color: #333; }
@@ -28,7 +28,7 @@ The `index.html` file is a simple, self-contained HTML document with embedded CS
     </style>
 </head>
 <body>
-    <h1>Welcome to Inception VC Bonus Site</h1>
+    <h1>Welcome to Inception Bonus Site</h1>
     <p>This is a simple static website served from a custom Docker container.</p>
 </body>
 </html>

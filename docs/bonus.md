@@ -18,7 +18,7 @@ Sometimes developers need direct access to the WordPress files for manual update
 ## 3. Static Site: A Lightweight Alternative
 Not all web pages need the complexity of WordPress and PHP.
 - **Purpose**: Serves a simple, high-performance static website (HTML/CSS/JS).
-- **Configuration**: A minimal NGINX container serving our "Inception VC" homepage.
+- **Configuration**: A minimal NGINX container serving our "Inception" homepage.
 - **Routing**: NGINX routes traffic on the `/static` sub-path to this container.
 
 ## 4. Adminer: Web-Based Database Management

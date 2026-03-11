@@ -1,4 +1,4 @@
-NAME = vcinception
+NAME = Inception
 SRCS_DIR = srcs
 DOCKER_COMPOSE = docker compose -f $(SRCS_DIR)/docker-compose.yml
 LOGIN = ouvled
