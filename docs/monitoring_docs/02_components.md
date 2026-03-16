@@ -15,7 +15,7 @@ The `ENTRYPOINT` of the container is simply to run this binary, making the conta
 
 ### 2. Host Volume Mounts (The "Sensors")
 
-cAdvisor runs in a container, which is isolated from the host by default. To gather meaningful data about the host system and the other running Docker containers, it needs read-only access to specific system directories. These are provided via the `volumes` section in the `docker-compose.yml` file.
+cAdvisor runs in a container, which is isolated from the host by default. To gather meaningful data about the host system and the other running containers, it needs read-only access to specific system directories. These are provided via the `volumes` section in the `docker-compose.yml` file.
 
 Think of these mounts as cAdvisor's "sensors" or "probes."
 
@@ -23,16 +23,18 @@ Think of these mounts as cAdvisor's "sensors" or "probes."
 # From docker-compose.yml
 volumes:
   - /:/rootfs:ro
-  - /var/run:/var/run:ro
+  - /var/run/docker.sock:/var/run/docker.sock:ro
   - /sys:/sys:ro
+  - /sys/fs/cgroup:/sys/fs/cgroup:ro
   - /var/lib/docker/:/var/lib/docker:ro
   - /dev/disk/:/dev/disk:ro
 ```
 
 - **`/sys:/sys:ro`**: This virtual filesystem, provided by the Linux kernel, is cAdvisor's primary source for low-level resource metrics like CPU usage, memory statistics, and network activity.
 - **`/var/lib/docker/:/var/lib/docker:ro`**: This gives cAdvisor access to the Docker root directory, allowing it to gather metrics about storage usage by different containers and images.
-- **`/var/run:/var/run:ro`**: This is important because it contains the Docker daemon socket (`docker.sock`). By accessing this socket, cAdvisor can communicate with the Docker API to get a list of all running containers and their metadata (names, IDs, etc.).
 - **`/:/rootfs:ro`**: This provides a view of the host's entire filesystem, which helps in analyzing filesystem usage and capacity.
 - **`/dev/disk/:/dev/disk:ro`**: Provides low-level information about disk I/O activity.
+> **Note:** The Docker socket is required for the `/docker` UI. If your Docker engine is configured for the containerd image store, cAdvisor can fail to list containers until you switch back to the classic image store.
 
 The `:ro` flag on every single one of these mounts is a critical security feature. It ensures that the `monitoring` container can only **read** system information. It has no permission to write, modify, or delete anything on the host machine, strictly limiting its capabilities to its intended purpose.
+- **`/var/run/docker.sock:/var/run/docker.sock:ro`**: Gives cAdvisor access to the Docker API so it can discover containers and metadata.

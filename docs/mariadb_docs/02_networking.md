@@ -8,7 +8,7 @@ In Docker Compose, when we define a `network`, Docker creates a **Virtual Bridge
 - Docker provides an internal **DNS Server**. This is the magic that allows WordPress to connect to a host named `mariadb` instead of an IP address.
 
 ## 2. The "Bind-Address" Trap
-By default, a MariaDB installation on Debian is configured to listen only on `127.0.0.1` (localhost).
+By default, MariaDB often listens only on `127.0.0.1` (localhost).
 - **The Problem**: In a container stack, `localhost` inside the MariaDB container refers *only* to itself. The WordPress container is a different "machine" with a different IP.
 - **The Solution**: We must change the `bind-address` to `0.0.0.0`. This tells MariaDB: "Listen for connections on ALL your network interfaces, including the one connected to the Docker Bridge."
 

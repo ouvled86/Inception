@@ -16,9 +16,16 @@ You will be greeted with the main cAdvisor page, which shows high-level resource
 
 The most useful feature of cAdvisor is its ability to isolate metrics for individual containers.
 
-1.  From the main page, click on the **`/docker`** link. This will take you to a page listing all the Docker containers that cAdvisor has automatically discovered.
-2.  You will see a list of familiar names from the project, such as `nginx`, `wordpress`, `mariadb`, `redis`, etc.
-3.  Click on the name of any container (e.g., **`wordpress`**) to view its detailed monitoring dashboard.
+1.  From the main page, click the **`/docker`** link to see a list of containers and open their dashboards.
+2.  If the `/docker` list is empty, verify that Docker is using the classic image store (the containerd snapshotter breaks cAdvisor’s image discovery).
+
+### Quick Check
+
+If you need to verify discovery quickly:
+
+```bash
+curl -s http://localhost:8080/api/v1.3/subcontainers
+```
 
 ### Step 3: Understanding the Container Dashboard
 

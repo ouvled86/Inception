@@ -16,7 +16,7 @@ services:
 ```
 
 - **`ports: - "443:443"`**: This directive maps port `443` on the host machine to port `443` inside the Nginx container.
-- When a user navigates to `https://ouel-bou.42.fr` (which resolves to your host machine's IP), their browser sends a request to port `443`.
+- When a user navigates to `https://<login>.42.fr` (which resolves to your host machine's IP), their browser sends a request to port `443`.
 - Docker intercepts this request and forwards it to port `443` inside the Nginx container, where the Nginx process is listening, as configured in `nginx.conf` (`listen 443 ssl;`).
 
 This makes Nginx the sole entry point for all web traffic.
@@ -45,7 +45,7 @@ A key feature of Docker's custom networks is its **internal DNS service**. This 
 2.  **Communicating with Bonus Services:**
     The same principle applies to the bonus services defined in `nginx.conf`:
     - `proxy_pass http://adminer:8080/...`: Nginx resolves `adminer` to the Adminer container's IP address and forwards the request.
-    - `proxy_pass http://static:80/`: Nginx resolves `static` to the static site container's IP address and forwards the request.
+    - `proxy_pass http://portfolio:80/`: Nginx resolves `portfolio` to the static site container's IP address and forwards the request.
 
 ### Visualizing the Network Flow
 
@@ -71,7 +71,7 @@ This setup creates a clear and secure flow of traffic:
 | FastCGI (Port 9000)    | HTTP (Port 8080)               | HTTP (Port 80)
 v                        v                                v
 +--------------------+ +--------------------+ +--------------------+
-| WORDPRESS Container| |  ADMINER Container | |  STATIC Container  |
+| WORDPRESS Container| |  ADMINER Container | | PORTFOLIO Container |
 |  (inception_net)   | |  (inception_net)   | |  (inception_net)   |
 +--------------------+ +--------------------+ +--------------------+
 ```

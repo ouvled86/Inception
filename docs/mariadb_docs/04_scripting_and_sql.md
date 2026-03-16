@@ -14,7 +14,7 @@ To set up users and passwords securely, we use the `mysqld --bootstrap` command.
 Let's break down the syntax you need to master:
 
 #### `ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';`
-On a fresh Debian install, the root user often has no password or uses "unix_socket" authentication. We must force it to use a strong password so we can manage it later.
+On a fresh install, the root user often has no password or uses socket authentication. We must force it to use a strong password so we can manage it later.
 
 #### `CREATE DATABASE IF NOT EXISTS wordpress;`
 The container for all our tables.

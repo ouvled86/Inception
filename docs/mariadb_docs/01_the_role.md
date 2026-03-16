@@ -14,7 +14,7 @@ In our specific infrastructure, MariaDB has very specific neighbors:
 
 ## 3. The "Inception" Constraints
 Because we are building this "from scratch" using custom Dockerfiles:
-1. We don't use the official MariaDB image. We build on **Debian**.
+1. We don't use the official MariaDB image. We build on **Alpine**.
 2. We must handle the **Initialization Phase** ourselves (creating the first database and users).
 3. We must ensure the process stays in the **Foreground** (PID 1) so Docker doesn't think the container has finished its job and shut it down.
 

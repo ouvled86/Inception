@@ -1,10 +1,11 @@
 FROM alpine:3.22.3
 
-RUN apk add --no-cache nginx
+RUN apk add --no-cache busybox-extras
 
-COPY ./tools/index.html /var/www/html/index.html
-COPY ./conf/nginx.conf /etc/nginx/http.d/default.conf
+WORKDIR /var/www/html
+
+COPY ./tools/static/ ./
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["httpd", "-f", "-p", "80", "-h", "/var/www/html"]

@@ -6,13 +6,13 @@ Welcome, students. Today we explore the most critical part of our application: t
 A dynamic website like WordPress requires a place to store its content: posts, users, comments, and configuration settings. **MariaDB** is a robust, open-source relational database management system (RDBMS) that provides this storage.
 
 ## 2. Configuration Strategy
-Our MariaDB service is built from a clean **Debian Bullseye** image. Here are the key architectural choices:
+Our MariaDB service is built from the penultimate stable **Alpine** image. Here are the key architectural choices:
 
 ### Isolated Security
 The database container does **not** expose any ports to the host machine. It only listens on its internal IP address within the `inception_net` network. This is a crucial security practice: if an attacker gains access to your host machine, they still cannot directly query your database unless they compromise the Docker network or another container.
 
 ### Persistence through Named Volumes
-Databases must survive container restarts. We've configured a **Docker Named Volume** (`mariadb_data`) that maps to a persistent directory on the host's filesystem (`/home/ouel-bou/data/mariadb`). 
+Databases must survive container restarts. We've configured a **Docker Named Volume** (`mariadb_data`) that maps to a persistent directory on the host's filesystem (`/home/<login>/data/mariadb`). 
 
 ### Initialization Script
 To ensure a fully functional database from the moment the container starts, we've implemented an `entrypoint.sh` script that:
@@ -28,4 +28,4 @@ To ensure a fully functional database from the moment the container starts, we'v
 ```ini
 bind-address = 0.0.0.0
 ```
-- **Named Volumes**: Unlike bind mounts, Docker manages the storage lifecycle of named volumes, though we've manually mapped ours to a host path as per the project's requirements.
+- **Named Volumes**: Docker manages the volume lifecycle while still storing data under `/home/<login>/data` to meet the project requirement.

@@ -8,7 +8,7 @@ The Adminer interface is not exposed on its own port. It is only accessible thro
 
 `https://<your-domain>/adminer`
 
-For example: `https://ouel-bou.42.fr/adminer`
+For example: `https://<login>.42.fr/adminer`
 
 You should be greeted with the Adminer login screen.
 

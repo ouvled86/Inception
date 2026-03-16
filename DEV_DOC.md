@@ -13,13 +13,14 @@ This guide is intended for developers who want to understand, extend, or maintai
 
 ### Configuration
 
-All configuration is centralized in `srcs/.env`. Do NOT commit this file with real secrets in a production environment.
+Configuration is generated into `srcs/.env` at build time (see `scripts/gen_env.py`).
+Use `srcs/.env.example` as the template and never commit real secrets.
 
 ## 2. Architecture Overview
 
 The project follows a modular design where each service has its own directory in `srcs/requirements/`:
 
-- **Dockerfile**: Defines the build process from a clean `debian:bullseye` image.
+- **Dockerfile**: Defines the build process from the penultimate stable Alpine base image.
 - **conf/**: Contains static configuration files (Nginx configs, PHP pools).
 - **tools/**: Contains dynamic setup scripts (WP-CLI installation, DB initialization).
 
@@ -34,8 +35,8 @@ The `Makefile` is the primary interface for managing the lifecycle:
 
 Data is stored on the host machine to ensure it survives container deletion:
 
-- **WordPress Files**: `/home/ouel-bou/data/wordpress`
-- **Database Files**: `/home/ouel-bou/data/mariadb`
+- **WordPress Files**: `/home/<login>/data/wordpress`
+- **Database Files**: `/home/<login>/data/mariadb`
 - **Volumes**: Managed via `docker-compose.yml` using the `local` driver with `bind` options.
 
 ## 5. Extending the Infrastructure

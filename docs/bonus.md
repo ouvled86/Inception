@@ -18,7 +18,7 @@ Sometimes developers need direct access to the WordPress files for manual update
 ## 3. Static Site: A Lightweight Alternative
 Not all web pages need the complexity of WordPress and PHP.
 - **Purpose**: Serves a simple, high-performance static website (HTML/CSS/JS).
-- **Configuration**: A minimal NGINX container serving our "Inception" homepage.
+- **Configuration**: A minimal BusyBox `httpd` server serving our static portfolio.
 - **Routing**: NGINX routes traffic on the `/static` sub-path to this container.
 
 ## 4. Adminer: Web-Based Database Management
@@ -32,6 +32,7 @@ How do we know if our containers are healthy or consuming too much memory?
 - **Purpose**: Analyzes and exposes resource usage and performance characteristics of all running containers.
 - **Configuration**: **cAdvisor** (Container Advisor) is a Google-developed tool that runs as a standalone daemon.
 - **Access**: It connects to the host's Docker socket to gather data and provides a web dashboard on port **8080**.
+- **Note**: On systems using Docker's containerd image store, cAdvisor discovers containers via containerd and the `/docker` UI can appear empty even though the API (`/api/v1.3/subcontainers`) works.
 - **Importance**: Monitoring is the eyes of a system administrator. Without it, you are blind to the state of your infrastructure.
 
 ## Key Takeaway

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inception Static Site</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <nav class="reveal">
+        <a href="#home">Home</a>
+        <a href="/">Blog</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#picks">Picks</a>
+      </nav>
+
+      <section id="home" class="hero reveal">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="eyebrow">Developer Portfolio</p>
+            <h1>Oualid El Boukhari</h1>
+            <p class="subtitle">
+              Currently a student at 1337 Coding School (42 Network), focusing on DevOps and full‑stack engineering, with a strong interest in cybersecurity.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-solid" href="#projects">View Projects</a>
+              <a class="btn btn-outline" href="#about">About Me</a>
+            </div>
+            <ul class="hero-metrics">
+              <li><span>38+</span> repositories</li>
+              <li><span>42</span> cursus projects</li>
+              <li><span>Docker</span> focused workflow</li>
+            </ul>
+          </div>
+          <div class="hero-media reveal">
+            <div class="profile-frame">
+              <img
+                src="https://cdn.intra.42.fr/users/8462ac1d7fe1958dac02b822644ae7c7/ouel-bou.jpg"
+                alt="Oualid El Boukhari"
+                class="profile-pic"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section reveal">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Projects</p>
+            <h2>Highlights</h2>
+          </div>
+        </div>
+        <div class="project-slider-wrap">
+          <button class="slider-btn slider-btn-left" type="button" aria-label="Scroll projects left">
+            <i class="bx bx-left-arrow-alt"></i>
+          </button>
+          <div class="project-slider">
+          <article class="project-card reveal">
+            <span class="project-domain">inception</span>
+            <h3>Multi-service stack</h3>
+            <p>NGINX + WordPress + MariaDB with strict TLS.</p>
+            <a href="#about">Learn more</a>
+          </article>
+          <article class="project-card reveal">
+            <span class="project-domain">bonus</span>
+            <h3>Static bonus site</h3>
+            <p>Pure HTML/CSS/JS served by a lightweight container.</p>
+            <a href="#about">Details</a>
+          </article>
+          <article class="project-card reveal">
+            <span class="project-domain">webserv</span>
+            <h3>HTTP server in C++</h3>
+            <p>
+              A custom HTTP/1.1 server built from scratch with a focus on
+              correctness, performance, and clean architecture.
+            </p>
+            <ul class="stack-list">
+              <li>C++</li>
+              <li>HTTP</li>
+              <li>Networking</li>
+            </ul>
+            <a href="#about">Learn more</a>
+          </article>
+          <article class="project-card reveal">
+            <span class="project-domain">caftany</span>
+            <h3>Caftany ecommerce</h3>
+            <p>
+              A boutique ecommerce experience for handmade caftans with curated
+              visuals and a refined checkout flow.
+            </p>
+            <ul class="stack-list">
+              <li>UI/UX</li>
+              <li>Frontend</li>
+              <li>Ecommerce</li>
+            </ul>
+            <a href="#about">Explore</a>
+          </article>
+          </div>
+          <button class="slider-btn slider-btn-right" type="button" aria-label="Scroll projects right">
+            <i class="bx bx-right-arrow-alt"></i>
+          </button>
+        </div>
+      </section>
+      <section id="picks" class="section reveal">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Collection</p>
+            <h2>My Picks</h2>
+          </div>
+        </div>
+        <div class="media-landing">
+          <div class="category-grid">
+            <a class="category-card anime-card" href="https://myanimelist.net/profile/ouvled" style="--card-bg: linear-gradient(140deg, #0c0c0c, #3b0a10);">
+              <div class="category-content">
+                <i class="bx bxs-collection"></i>
+                <h3>Anime</h3>
+                <p>Myanimelist profile link</p>
+              </div>
+              <div class="category-overlay"></div>
+            </a>
+            <a class="category-card tv-card" href="https://tvtime.com/r/3gsRW" style="--card-bg: linear-gradient(140deg, #111018, #1f2a44);">
+              <div class="category-content">
+                <i class="bx bxs-tv"></i>
+                <h3>TV Shows</h3>
+                <p>TV Time profile link</p>
+              </div>
+              <div class="category-overlay"></div>
+            </a>
+            <a class="category-card movie-card" href="https://tvtime.com/r/3gsRW" style="--card-bg: linear-gradient(140deg, #0b0a0a, #3a2a12);">
+              <div class="category-content">
+                <i class="bx bxs-film"></i>
+                <h3>Movies</h3>
+                <p>TV Time profile link</p>
+              </div>
+              <div class="category-overlay"></div>
+            </a>
+            <a class="category-card music-card" href="https://open.spotify.com/user/31ub3i2hyffwgmtxlzn5l2cxqzrq?si=1b7a8e71eb9d4174" style="--card-bg: linear-gradient(140deg, #0b0c12, #1a2f2b);">
+              <div class="category-content">
+                <i class="bx bxs-music"></i>
+                <h3>Music</h3>
+                <p>Spotify profile link</p>
+              </div>
+              <div class="category-overlay"></div>
+            </a>
+          </div>
+        </div>
+      </section>
+	  <section id="resume" class="resume section reveal">
+        <div class="resume-card">
+          <h2>Resume</h2>
+          <p>
+            Placeholder for my resume. I will add the PDF here once it is ready.
+          </p>
+          <a class="btn btn-solid" href="#" aria-disabled="true">Download Resume (Soon)</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-social">
+        <div class="social-grid">
+          <a href="https://github.com/ouvled86" target="_blank" rel="noreferrer"
+            ><i class="bx bxl-github"></i
+          ></a>
+          <a
+            href="https://linkedin.com/in/oualid-el-boukhari"
+            target="_blank"
+            rel="noreferrer"
+            ><i class="bx bxl-linkedin"></i
+          ></a>
+          <a href="https://twitter.com/ouvled86" target="_blank" rel="noreferrer"
+            ><i class="bx bxl-twitter"></i
+          ></a>
+          <a href="https://instagram.com/ouvled" target="_blank" rel="noreferrer"
+            ><i class="bx bxl-instagram"></i
+          ></a>
+          <a href="mailto:ouvled@gmail.com"
+            ><i class="bx bx-envelope"></i
+          ></a>
+          <a href="https://discord.com/users/ouvled" target="_blank" rel="noreferrer"
+            ><i class="bx bxl-discord"></i
+          ></a>
+        </div>
+      </div>
+      <p>© 2026 Oualid El Boukhari</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

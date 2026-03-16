@@ -19,12 +19,7 @@ At the core of any TLS setup are a public certificate and a private key.
 - **Public Certificate (`.crt`):** This file is sent to every connecting user. It contains the server's public key and information about its identity (e.g., the domain name). The browser uses it to encrypt data in a way that only the server can decrypt.
 - **Private Key (`.key`):** This file is kept secret on the server. It is the only key capable of decrypting the information that was encrypted with the public certificate. **Its security is critical.**
 
-In this project, the `Dockerfile` for Nginx copies a pre-existing certificate and key into the container:
-
-```dockerfile
-COPY ./conf/ouel-bou.42.fr.pem /etc/nginx/ssl/nginx.crt
-COPY ./conf/ouel-bou.42.fr-key.pem /etc/nginx/ssl/nginx.key
-```
+In this project, the certificate and key are **generated at container start** if they do not already exist. The entrypoint script creates a self‑signed certificate with the configured domain name.
 
 These files are then referenced in `nginx.conf`:
 ```nginx
@@ -36,12 +31,12 @@ ssl_certificate_key /etc/nginx/ssl/nginx.key;
 
 The certificate used in this project is "self-signed." This means it was not verified by a trusted public Certificate Authority (CA) like Let's Encrypt. Instead, it was signed by its own private key.
 
-The `Dockerfile` contains a commented-out example of how such a certificate could be generated using `openssl`:
-```dockerfile
-# RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-#     -keyout /etc/nginx/ssl/nginx.key \
-#     -out /etc/nginx/ssl/nginx.crt \
-#     -subj "/C=FR/ST=Paris/L=Paris/O=42/OU=Inception/CN=ouel-bou.42.fr"
+The entrypoint uses `openssl` to generate the certificate if needed:
+```sh
+openssl req -x509 -nodes -newkey rsa:2048 -days 365 \
+  -keyout /etc/nginx/ssl/nginx.key \
+  -out /etc/nginx/ssl/nginx.crt \
+  -subj "/CN=<login>.42.fr"
 ```
 For a public website, you would need a certificate from a trusted CA. For a local development project like Inception, a self-signed certificate is sufficient, though it will cause your browser to show a security warning that you must manually accept.
 

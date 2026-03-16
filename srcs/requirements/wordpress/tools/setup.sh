@@ -19,4 +19,13 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
     wp redis enable --path=/var/www/html --allow-root
 fi
 
+# Install and activate the static-inspired theme (idempotent)
+if [ -d "/usr/local/share/inception-static" ]; then
+    mkdir -p /var/www/html/wp-content/themes/inception-static
+    cp -R /usr/local/share/inception-static/* /var/www/html/wp-content/themes/inception-static/
+    if wp core is-installed --path=/var/www/html --allow-root; then
+        wp theme activate inception-static --path=/var/www/html --allow-root || true
+    fi
+fi
+
 exec "$@"

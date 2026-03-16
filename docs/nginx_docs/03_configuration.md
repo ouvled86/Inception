@@ -1,6 +1,6 @@
 # 03. Nginx Configuration
 
-The heart of the Nginx service is its configuration file, located at `/etc/nginx/sites-available/default` inside the container (copied from `./srcs/requirements/nginx/conf/nginx.conf`). This file dictates exactly how Nginx handles incoming requests.
+The heart of the Nginx service is its configuration file, located at `/etc/nginx/http.d/default.conf` inside the container. It is generated at container start from the template `./srcs/requirements/nginx/conf/nginx.conf`. This file dictates exactly how Nginx handles incoming requests.
 
 Let's break it down section by section.
 
@@ -22,11 +22,11 @@ These first directives define which port and domain this server block will respo
 listen 443 ssl;
 listen [::]:443 ssl;
 
-server_name ouel-bou.42.fr;
+server_name ${DOMAIN_NAME};
 ```
 - **`listen 443 ssl;`**: Tells Nginx to listen for incoming connections on port 443 (standard for HTTPS) and to handle them using the SSL/TLS protocol. This covers IPv4 addresses.
 - **`listen [::]:443 ssl;`**: Does the same thing for IPv6 addresses.
-- **`server_name ouel-bou.42.fr;`**: Specifies that this server block should handle requests where the `Host` header matches `ouel-bou.42.fr`.
+- **`server_name ${DOMAIN_NAME};`**: Specifies that this server block should handle requests where the `Host` header matches the domain defined in `.env`.
 
 ### Document Root and Index Files
 
@@ -95,8 +95,8 @@ These blocks demonstrate how Nginx can act as a simple reverse proxy to other se
 
 ```nginx
 location /static/ {
-    proxy_pass http://static:80/;
+    proxy_pass http://portfolio:80/;
 }
 ```
 - **`location /static/`**: Matches any request starting with `/static/`.
-- **`proxy_pass http://static:80/`**: Forwards the entire request to the service named `static` on port `80`. This is a standard HTTP reverse proxy, distinct from the `fastcgi_pass` used for PHP.
+- **`proxy_pass http://portfolio:80/`**: Forwards the entire request to the service named `portfolio` on port `80`. This is a standard HTTP reverse proxy, distinct from the `fastcgi_pass` used for PHP.

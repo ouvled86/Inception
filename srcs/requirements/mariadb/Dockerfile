@@ -10,6 +10,7 @@ RUN mkdir -p /var/log/mysql && chown mysql:mysql /var/log/mysql
 
 COPY ./conf/50-server.cnf /etc/my.cnf.d/99-server.cnf
 RUN sed -i '/^skip-networking/d' /etc/my.cnf.d/mariadb-server.cnf
+COPY ./tools/schema.sql /docker-entrypoint-initdb.d/schema.sql
 COPY ./tools/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/entrypoint.sh

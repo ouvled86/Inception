@@ -1,6 +1,6 @@
 # Module 3: Configuration Deep Dive (50-server.cnf)
 
-Today, we look at the "Brain" of the MariaDB service: the configuration file. On Debian, this is typically found at `/etc/mysql/mariadb.conf.d/50-server.cnf`.
+Today, we look at the "Brain" of the MariaDB service: the configuration file. In this project, it lives under `/etc/my.cnf.d/` (see `srcs/requirements/mariadb/conf/50-server.cnf`).
 
 ## 1. The Essential Directives
 When setting up MariaDB for a container stack, these four lines are your "Commandments":

@@ -12,7 +12,7 @@ The `static` service in this project is a minimal web server that serves a singl
 
 The true purpose of this service is to illustrate a microservice architecture.
 
-- **Independence:** The `static` service runs in its own container with its own dedicated Nginx server. It knows nothing about WordPress or MariaDB.
+- **Independence:** The `static` service runs in its own container with a lightweight HTTP server. It knows nothing about WordPress or MariaDB.
 - **Single Responsibility:** Its one and only job is to serve the content of its `index.html` file.
 - **Composition:** The main Nginx gateway acts as a composer, integrating this separate, independent service into the main project. When a user navigates to the `/static/` URL, the main Nginx reverse proxies the request to this `static` service, making it appear to the end-user as if it's just another page on the main website.
 

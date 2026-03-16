@@ -7,10 +7,10 @@ In a modern web architecture, we never expose our application servers directly t
 - Terminating SSL/TLS encryption.
 - Serving static files (CSS, JS, images) directly from the shared volume.
 - Routing dynamic requests (PHP) to the WordPress container via the FastCGI protocol.
-- Proxying requests to our bonus services (Adminer, Static Site).
+- Proxying requests to our bonus services (Adminer, Static Site/Portfolio).
 
 ## 2. Configuration Highlights
-Our NGINX service is built from a clean **Debian Bullseye** image. Here are the key architectural choices:
+Our NGINX service is built from the penultimate stable **Alpine** image. Here are the key architectural choices:
 
 ### SSL/TLS Security
 Following the project's strict mandates, we only support **TLSv1.2** and **TLSv1.3**. This ensures that all communication between the client and our infrastructure is encrypted using modern, secure protocols.
@@ -30,7 +30,7 @@ location ~ \.php$ {
 ### Routing and Sub-paths
 To integrate our bonus services, we've configured NGINX to handle specific paths:
 - `/adminer`: Proxies to the Adminer dashboard.
-- `/static`: Proxies to our lightweight static website container.
+- `/static`: Proxies to our lightweight static website container (`portfolio` service).
 
 ## 3. Key Concepts to Remember
 - **Reverse Proxy**: Acts as an intermediary for requests from clients seeking resources from other servers.

@@ -6,7 +6,7 @@ Welcome, students. Today we explore the engine of our web presence: **WordPress*
 WordPress is a popular Content Management System (CMS) built on PHP. Its primary role is to process requests, fetch data from the MariaDB database, and generate HTML pages for our users.
 
 ## 2. Configuration Strategy
-Our WordPress service is built from a clean **Debian Bullseye** image. Here are the key architectural choices:
+Our WordPress service is built from the penultimate stable **Alpine** image. Here are the key architectural choices:
 
 ### PHP-FPM (FastCGI Process Manager)
 We use the **FPM** variant of PHP. Unlike the Apache module `mod_php`, PHP-FPM runs as a standalone daemon. This allows for better performance and scalability, especially when paired with a high-performance web server like NGINX.

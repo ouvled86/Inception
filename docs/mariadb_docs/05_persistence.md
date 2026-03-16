@@ -8,8 +8,8 @@ Inside this directory, MariaDB creates:
 - `mysql/`: System-level users and permissions.
 - `wordpress/`: All your blog posts and comments.
 
-## 2. Bind Mounts vs. Named Volumes
-In our `docker-compose.yml`, we use a **Bind Mount** masquerading as a Named Volume:
+## 2. Named Volumes and Host Storage
+In our `docker-compose.yml`, we use a **Named Volume** that stores its data under `/home/<login>/data`:
 ```yaml
 volumes:
   mariadb_data:
@@ -17,10 +17,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/ouvled/data/mariadb
+      device: /home/<login>/data/mariadb
 ```
 - **Why?**: The 42 project requires data to be stored in `/home/login/data`. 
-- **The Risk**: MariaDB is very sensitive to file permissions. If the host folder (`/home/ouvled/data/mariadb`) is owned by the wrong user, MariaDB will fail to start with an "Access Denied" error. This is why our script/Dockerfile must ensure the `mysql` user has ownership of the data directory.
+- **The Risk**: MariaDB is very sensitive to file permissions. If the host folder (`/home/<login>/data/mariadb`) is owned by the wrong user, MariaDB will fail to start with an "Access Denied" error. This is why our script/Dockerfile must ensure the `mysql` user has ownership of the data directory.
 
 ## 3. The Graceful Shutdown
 Databases use **Write-Ahead Logging (WAL)**. If you pull the power (or `kill -9` a container), you might lose the last few seconds of data. 

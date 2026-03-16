@@ -1,10 +1,10 @@
 # Inception: Infrastructure with Docker
 
-*This project has been created as part of the 42 curriculum by ouel-bou.*
+*This project has been created as part of the 42 curriculum.*
 
 ## 1. Description
 
-Welcome to **Inception**, a professional-grade, multi-container infrastructure built entirely from custom Dockerfiles. This project demonstrates the orchestration of a web stack consisting of NGINX, WordPress, MariaDB, and five bonus services (Redis, FTP, Adminer, Static Site, and cAdvisor), and an extra service made with node.js (express 4.21.0 and socket.io 4.7.5), which is a party game that requires voice-chat or playing live with friends (2+), each player gets their turn (60s default per player) to describe words without saying taboo words, simple but competitive and fun, team with highest score wins!
+Welcome to **Inception**, a professional-grade, multi-container infrastructure built entirely from custom Dockerfiles. This project demonstrates the orchestration of a web stack consisting of NGINX, WordPress, MariaDB, and five bonus services (Redis, FTP, Adminer, Static Site, and cAdvisor).
 
 ### The Architecture
 
@@ -16,7 +16,6 @@ Welcome to **Inception**, a professional-grade, multi-container infrastructure b
 - **Management**: Adminer (Database GUI)
 - **Static Content**: Lightweight Static Site
 - **Monitoring**: cAdvisor (Resource usage dashboard)
-- **Taboo Table Game**: A node.js social game in Moroccan Dialect (Darija)
 
 ## 2. Instructions
 
@@ -37,8 +36,8 @@ To launch the infrastructure, follow these steps:
     ```
 
 2. **Configure your environment**:
-    - Update `/etc/hosts`: `127.0.0.1 ouel-bou.42.fr`
-    - Review the `srcs/.env` file for credentials.
+    - Update `/etc/hosts`: `127.0.0.1 <login>.42.fr`
+    - The `.env` file is generated on first `make` run (see `srcs/.env.example`).
 3. **Build and launch**:
 
     ```bash
@@ -46,10 +45,9 @@ To launch the infrastructure, follow these steps:
     ```
 
 4. **Access the services**:
-    - WordPress: `https://ouel-bou.42.fr`
-    - Taboo Table: `https://ouel-bou.42.fr/taboo`
-    - Adminer: `https://ouel-bou.42.fr/adminer`
-    - Static Site: `https://ouel-bou.42.fr/static`
+    - WordPress: `https://<login>.42.fr`
+    - Adminer: `https://<login>.42.fr/adminer`
+    - Static Site: `https://<login>.42.fr/static`
     - Monitoring: `http://localhost:8080`
 
 ### Management Commands
@@ -87,3 +85,4 @@ To launch the infrastructure, follow these steps:
 - [NGINX Documentation](https://nginx.org/en/docs/)
 - [WP-CLI Handbook](https://make.wordpress.org/cli/handbook/)
 - [MariaDB Knowledge Base](https://mariadb.com/kb/en/)
+- [Brian Holt's docker documentation](https://containers-v2.holt.courses/)

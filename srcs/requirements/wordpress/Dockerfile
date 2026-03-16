@@ -42,6 +42,7 @@ RUN sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php84/php.ini
 
 COPY ./conf/www.conf /etc/php84/php-fpm.d/www.conf
 COPY ./tools/setup.sh /usr/local/bin/setup.sh
+COPY ./tools/theme/inception-static /usr/local/share/inception-static
 
 RUN chmod +x /usr/local/bin/setup.sh
 

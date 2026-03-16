@@ -47,7 +47,7 @@ services:
   redis:
     build:
       context: ./requirements/bonus/redis
-    image: redis:234
+    image: redis
     container_name: redis
     restart: always
     networks:
@@ -69,12 +69,14 @@ services:
     networks:
       - inception_net
 
-  static:
+  portfolio:
     build:
       context: ./requirements/bonus/static
-    image: static
-    container_name: static
+    image: portfolio
+    container_name: portfolio
     restart: always
+    env_file:
+      - .env
     networks:
       - inception_net
 
@@ -93,23 +95,16 @@ services:
     image: monitoring
     container_name: monitoring
     restart: always
+    privileged: true
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /sys:/sys:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
     ports:
       - "8080:8080"
-    networks:
-      - inception_net
-
-  taboo:
-    build:
-      context: ./requirements/bonus/taboo
-    image: taboo
-    container_name: taboo
-    restart: always
     networks:
       - inception_net
 
@@ -123,10 +118,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/ouel-bou/data/mariadb
+      device: ${DATA_PATH}/mariadb
   wordpress_data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/ouel-bou/data/wordpress
+      device: ${DATA_PATH}/wordpress
