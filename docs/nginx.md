@@ -1,6 +1,6 @@
 # NGINX Configuration and Architecture
 
-Welcome, students. Today we dive into the entry point of our infrastructure: **NGINX**.
+Welcome. In this documentation, we dive into the entry point of our infrastructure: **NGINX**.
 
 ## 1. Purpose
 In a modern web architecture, we never expose our application servers directly to the internet. Instead, we use a **Reverse Proxy**. NGINX fulfills this role by being the only container listening on the host's port **443** (HTTPS). Its primary responsibilities are:

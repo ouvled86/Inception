@@ -49,6 +49,7 @@ def build_env(login, data_path):
             "# Redis",
             "REDIS_HOST=redis",
             "REDIS_PORT=6379",
+            f"REDIS_PASSWORD={gen_secret(32)}",
             "",
             "# Paths",
             f"DATA_PATH={data_path}",

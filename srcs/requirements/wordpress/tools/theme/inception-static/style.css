@@ -1,10 +1,3 @@
-/*
-Theme Name: Inception Static
-Theme URI: https://example.local
-Author: 42 Inception
-Description: Static-inspired theme for the Inception WordPress blog.
-Version: 1.0.0
-*/
 :root {
     --bg: #0a0a0a;
     --bg-soft: #161616;
@@ -133,12 +126,10 @@ body {
     vertical-align: middle;
 }
 
-/* Removed old fire effects */
 .fire-ring {
     display: none;
 }
 
-/* Removed old flame animations */
 
 .sr-only {
     position: absolute;
