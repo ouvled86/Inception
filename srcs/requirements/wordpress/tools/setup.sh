@@ -28,7 +28,6 @@ if wp core is-installed --path=/var/www/html --allow-root; then
     wp plugin activate redis-cache --path=/var/www/html --allow-root
     wp config set WP_REDIS_HOST "${REDIS_HOST}" --path=/var/www/html --allow-root
     wp config set WP_REDIS_PORT "${REDIS_PORT}" --raw --path=/var/www/html --allow-root
-    wp config delete WP_REDIS_PASSWORD --path=/var/www/html --allow-root || true
     wp redis enable --path=/var/www/html --allow-root || true
 fi
 
